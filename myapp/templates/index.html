@@ -1,0 +1,437 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Consultation - Design & Marketing</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="bg-white">
+
+  <nav class="bg-white shadow-sm border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <img src="{% static 'images/logo.svg' %}" alt="Real Trust Logo" class="h-12 w-auto">
+                </div>
+
+                <!-- Navigation Links -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-gray-700 hover:text-blue-600 font-medium text-sm transition-colors">HOME</a>
+                    <a href="#services" class="text-gray-700 hover:text-blue-600 font-medium text-sm transition-colors">SERVICES</a>
+                    <a href="#about" class="text-gray-700 hover:text-blue-600 font-medium text-sm transition-colors">ABOUT US</a>
+                    <a href="#products" class="text-gray-700 hover:text-blue-600 font-medium text-sm transition-colors">PRODUCTS</a>
+                    <a href="#test" class="text-gray-700 hover:text-blue-600 font-medium text-sm transition-colors">TEST YOURSELF</a>
+                </div>
+
+                <!-- Contact Button -->
+                <div class="flex items-center">
+                    <button class="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-2 rounded transition-colors duration-200">
+                        CONTACT
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button (for responsive design) -->
+                <div class="md:hidden flex items-center">
+                    <button class="text-gray-700 hover:text-blue-600">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+  <!-- Hero Section with Consultation Form -->
+  <section class="min-h-screen bg-cover bg-center relative"
+    style="background-image: url('{% static 'images/bg.svg' %}')">
+    <!-- Dark overlay for better text contrast -->
+    <div class="absolute inset-0 bg-black/30"></div>
+
+    <div class="relative z-10 h-screen flex items-center">
+      <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          <!-- Left Content -->
+          <div class="flex items-center justify-center lg:justify-start">
+            <div>
+              <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
+                Consultation,<br />Design,<br />& Marketing
+              </h1>
+            </div>
+          </div>
+
+          {% if messages %}
+          <div class="fixed top-5 right-5 z-50 space-y-2">
+            {% for message in messages %}
+            <div class="px-4 py-2 bg-green-600 text-white font-semibold rounded shadow">
+              {{ message }}
+            </div>
+            {% endfor %}
+          </div>
+          {% endif %}
+
+          <!-- Right Form Card -->
+          <div class="flex items-center justify-center lg:justify-end">
+            <div class="w-full max-w-md bg-blue-900 rounded-lg p-8 shadow-2xl">
+              <h2 class="text-2xl font-bold text-white mb-8 text-center">
+                Get a Free Consultation
+              </h2>
+
+              <form class="space-y-4" method="POST" action="{% url 'contact-submit' %}">
+                {% csrf_token %}
+                <!-- Full Name Input -->
+                <div>
+                  <input type="text" placeholder="Full Name" name="full_name" required
+                    class="w-full px-4 py-3 bg-blue-800 border border-blue-700 text-white placeholder-blue-300 rounded focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition" />
+                </div>
+
+                <!-- Email Input -->
+                <div>
+                  <input type="email" placeholder="Email Address" name="email" required
+                    class="w-full px-4 py-3 bg-blue-800 border border-blue-700 text-white placeholder-blue-300 rounded focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition" />
+                </div>
+
+                <!-- Message Input -->
+                <div>
+                  <input type="tel" placeholder="Enter your mobile number" maxlength="10" name="mobile" required
+                    class="w-full px-4 py-3 bg-blue-800 border border-blue-700 text-white placeholder-blue-300 rounded focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition" />
+                </div>
+
+                <!-- Address Input -->
+                <div>
+                  <input type="text" placeholder="Address / City" name="city" required
+                    class="w-full px-4 py-3 bg-blue-800 border border-blue-700 text-white placeholder-blue-300 rounded focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition" />
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit"
+                  class="w-full py-3 mt-6 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded transition duration-200 transform hover:scale-105">
+                  Get Quick Quote
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="relative w-full overflow-hidden bg-white py-20">
+    <!-- Decorative Background Elements -->
+    <div class="absolute inset-0 pointer-events-none">
+
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Hero Section with Images -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
+        <!-- Left Content -->
+        <div class="flex flex-col justify-center mr-8 relative">
+          <img src="{% static 'shapes/Group 1.svg' %}" alt="" class="absolute -left-4 -bottom-36 opacity-100" />
+          <img src="{% static 'shapes/Ellipse 23.svg' %}" alt="" class="absolute -left-12 top-78 opacity-100" />
+          <h2 class="text-4xl lg:text-5xl font-bold text-blue-600 mb-4">
+            Not Your Average Realtor
+          </h2>
+          <p class="text-lg text-gray-700 leading-relaxed">
+            Your satisfaction is our top priority. We excel in delivering
+            exceptional service and exceeding expectations with every
+            interaction. Trust our dedicated professionals to guide you
+            through every step of your real estate journey with expertise and
+            care.
+          </p>
+        </div>
+
+        <!-- Right Images Section -->
+        <div class="relative h-96 lg:h-full min-h-96">
+          <img src="{% static 'shapes/Ellipse7.svg' %}" alt="" class="absolute left-16 -top-56 opacity-100" />
+          <!-- Large Central Image -->
+          <div
+            class="absolute -top-4 -right-12 w-48 h-48 rounded-full shadow-lg overflow-hidden bg-gray-200 flex items-center justify-center">
+            <img src="{% static 'images/Ellipse 12.svg' %}" alt="Professional realtor"
+              class="w-full h-full object-cover" />
+          </div>
+
+          <!-- Top Right Small Image -->
+          <div
+            class="absolute top-12 right-36 w-76 h-76 rounded-full shadow-md overflow-hidden bg-gray-200 flex items-center justify-center">
+            <img src="{% static 'images/Ellipse 11.svg' %}" alt=" Satisfied clients"
+              class="w-full h-full object-cover" />
+          </div>
+
+          <!-- Bottom Right Small Image -->
+          <div
+            class="absolute bottom-0 -right-12 w-48 h-48 rounded-full shadow-md overflow-hidden bg-gray-200 flex items-center justify-center">
+            <img src="{% static 'images/Ellipse 13.svg' %}" alt="Real estate expert"
+              class="w-full h-full object-cover" />
+          </div>
+
+          <!-- Decorative Circles -->
+          <div class="absolute -bottom-32.5 right-32">
+            <img src="{% static 'shapes/Ellipse 26.svg' %}" alt=""></img>
+          </div>
+          <div class="absolute top-0 left-10">
+            <img src="{% static 'shapes/Ellipse 24.svg' %}" alt=""></img>
+          </div>
+          <div class="absolute bottom-0 left-34.5">
+            <img src="{% static 'shapes/Ellipse 25-1.svg' %}" alt=""></img>
+          </div>
+        </div>
+      </div>
+
+      <!-- Why Choose Us Section -->
+      <div class="text-center mb-16">
+        <h3 class="text-3xl lg:text-4xl font-bold text-blue-600 mb-2">
+          Why Choose Us?
+        </h3>
+        <div class="w-24 h-1 bg-blue-600 mx-auto"></div>
+      </div>
+
+      <!-- Features Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Feature 1: Potential ROI -->
+        <div class="flex flex-col items-center text-center p-8 rounded-lg hover:shadow-lg transition-shadow">
+          <div class="w-20 h-20 rounded-full bg-blue-50 flex items-center justify-center mb-6">
+            <img src="{% static 'icons/home.svg' %}" alt="Home icon" class="w-12 h-12" />
+          </div>
+          <h4 class="text-xl font-bold text-gray-900 mb-3">Potential ROI</h4>
+          <p class="text-gray-700 leading-relaxed">
+            Maximize your investment returns with our data-driven approach and
+            market expertise. We identify high-potential properties that
+            deliver exceptional value and long-term growth opportunities.
+          </p>
+        </div>
+
+        <!-- Feature 2: Design -->
+        <div class="flex flex-col items-center text-center p-8 rounded-lg hover:shadow-lg transition-shadow">
+          <div class="w-20 h-20 rounded-full bg-blue-50 flex items-center justify-center mb-6">
+            <img src="{% static 'icons/paintbrush-2.svg' %}" alt="Design icon" class="w-12 h-12" />
+          </div>
+          <h4 class="text-xl font-bold text-gray-900 mb-3">Design</h4>
+          <p class="text-gray-700 leading-relaxed">
+            We showcase properties with stunning visuals and strategic
+            presentation. Our creative design approach highlights each
+            property's unique features and maximizes buyer appeal.
+          </p>
+        </div>
+
+        <!-- Feature 3: Marketing -->
+        <div class="flex flex-col items-center text-center p-8 rounded-lg hover:shadow-lg transition-shadow">
+          <div class="w-20 h-20 rounded-full bg-blue-50 flex items-center justify-center mb-6">
+            <img src="{% static 'icons/circle-dollar-sign.svg' %}" alt="Marketing icon" class="w-12 h-12" />
+          </div>
+          <h4 class="text-xl font-bold text-gray-900 mb-3">Marketing</h4>
+          <p class="text-gray-700 leading-relaxed">
+            Leverage our comprehensive marketing strategy to reach the right
+            buyers. We utilize multi-channel promotion and targeted campaigns
+            to ensure maximum visibility and results.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- image animation -->
+<main class="w-full">
+      <!-- Combined Hero and About Us Section -->
+      <section class="w-full py-12 md:py-24 overflow-hidden relative">
+        <!-- Background decorative elements -->
+        <div class="absolute -bottom-1/4 -left-1/4 w-3/5 h-[150%] bg-blue-50 rounded-full opacity-50 blur-xl z-0"></div>
+        <div class="absolute -top-1/4 -right-1/4 w-3/5 h-[150%] bg-blue-50 rounded-full opacity-50 blur-xl z-0"></div>
+
+        <div class="relative z-10 max-w-6xl mx-auto px-4">
+            <!-- Image Collage -->
+            <div class="relative w-full max-w-5xl mx-auto h-[45vh] md:h-[55vh] mb-16 md:mb-24">
+                <div class="absolute top-[5%] left-[2%] w-4 h-4 bg-gray-100 opacity-80" style="clip-path: polygon(0 0, 100% 0, 0 100%);"></div>
+                <div class="absolute top-[8%] right-[10%] w-8 h-8 grid grid-cols-3 gap-0.5 opacity-30">
+                    <div class="w-2 h-2 bg-gray-300"></div><div class="w-2 h-2 bg-gray-300"></div><div class="w-2 h-2 bg-gray-300"></div>
+                    <div class="w-2 h-2 bg-gray-300"></div><div class="w-2 h-2 bg-gray-300"></div><div class="w-2 h-2 bg-gray-300"></div>
+                    <div class="w-2 h-2 bg-gray-300"></div><div class="w-2 h-2 bg-gray-300"></div><div class="w-2 h-2 bg-gray-300"></div>
+                </div>
+                
+                <!-- Image 1: Handshake -->
+                <div class="absolute -top-20 left-36 w-[18%] z-10">
+                    <img
+                    src="{% static 'images/pexels-brett-sayles-2881232.svg' %}"
+                    alt="Real estate agent shaking hands with a client"
+                    class="w-full h-auto object-cover rounded-lg shadow-lg"
+                    />
+                    <div class="absolute -bottom-2 -left-2 w-8 h-8 border-b-[6px] border-l-[6px] border-orange-400 z-20"></div>
+                </div>
+
+                <!-- Image 2: Agent showing property (center) -->
+                <div class="absolute top-1/2 left-1/2 w-[30%] z-20 transform -translate-x-1/2 -translate-y-1/2">
+                    <img
+                    src="{% static 'images/pexels-andres-ayrton-6578391.svg' %}"
+                    alt="Real estate agent showing a property to a couple"
+                    class="w-full h-auto object-cover rounded-lg shadow-2xl"
+                    />
+                </div>
+                
+                <!-- Image 3: Couple with agent -->
+                <div class="absolute bottom-12 right-24 w-[22%] z-10">
+                    <img
+                    src="{% static 'images/pexels-fauxels-3182834.svg' %}"
+                    alt="Couple reviewing documents with a real estate agent"
+                    class="w-full h-auto object-cover rounded-lg shadow-lg"
+                    />
+                    <div class="absolute -bottom-2 -right-2 w-6 h-6 border-b-[6px] border-r-[6px] border-orange-400 z-20"></div>
+                </div>
+                
+                <!-- Floating Geometric Shapes -->
+                <div class="absolute top-[10%] left-[38%] w-8 h-8 bg-blue-500 z-30"></div>
+                <div class="absolute top-[22%] left-[60%] w-10 h-10 border-t-8 border-r-8 border-blue-500 z-30"></div>
+                <div class="absolute bottom-[25%] left-[35%] w-8 h-8 bg-blue-100 z-0"></div>
+            </div>
+
+            <!-- About Us Content -->
+            <div class="text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-blue-800 mb-3">About Us</h2>
+                <div class="w-20 h-1 bg-blue-500 mx-auto mb-8 rounded"></div>
+                <p class="max-w-3xl mx-auto text-gray-500 leading-relaxed mb-10">
+                    Fifteen years of experience in real estate, excellent customer service and a commitment to work hard, listen and follow through. We provide quality service to build relationships with clients and, more importantly, maintain those relationships by communicating effectively.
+                </p>
+                <button class="bg-white border border-gray-300 text-gray-500 hover:text-blue-600 hover:border-blue-300 hover:bg-blue-50 font-medium py-2 px-8 rounded shadow-sm transition-all duration-300 ease-in-out">
+                    LEARN MORE
+                </button>
+            </div>
+        </div>
+      </section>
+    </main>
+  <section class="relative py-16 bg-white">
+    <!-- Decorative circles -->
+    <div class="absolute top-10 right-20 w-6 h-6 bg-blue-500 rounded-full opacity-60"></div>
+    <div class="absolute bottom-20 left-10 w-8 h-8 bg-orange-500 rounded-full opacity-40"></div>
+
+    <div class="max-w-6xl mx-auto px-4">
+      <!-- Heading -->
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-blue-600 mb-2">
+          Happy Clients
+        </h2>
+        <div class="w-16 h-1 bg-blue-500 mx-auto rounded"></div>
+      </div>
+
+      <!-- Testimonials Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+        {% for client in clients %}
+        <!-- Client 1 -->
+        <div class="text-center">
+          <div class="flex justify-center mb-4">
+            <img src="{{ client.client_image.url}}" alt="{{client.client_name}}"
+              class="w-16 h-16 rounded-full shadow-lg" />
+          </div>
+          <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+            {{ client.client_description}}
+          </p>
+          <h3 class="font-semibold text-gray-800 text-sm mb-1">
+            {{ client.client_name }}
+          </h3>
+          <p class="text-xs text-gray-500">{{ client.client_designation }}</p>
+        </div>
+
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <footer class="relative w-full">
+    <!-- Hero Section with Background Image and Overlay -->
+    <section class="relative w-full h-96 bg-cover bg-center"
+      style="background-image: url('{% static 'images/Rectangle1.svg' %}')">
+      <!-- Dark Overlay -->
+      <div class="absolute inset-0 bg-black/60"></div>
+
+      <!-- Content -->
+      <div class="relative h-full flex flex-col items-center justify-center px-4 md:px-8">
+        <h2 class="text-white text-xl md:text-2xl text-center max-w-2xl mb-6 font-medium">
+          Learn more about our listing process, as well as our additional
+          staging and design work.
+        </h2>
+        <button
+          class="bg-white text-gray-900 px-8 py-3 rounded font-semibold hover:bg-gray-100 transition duration-300">
+          Contact Us
+        </button>
+      </div>
+    </section>
+
+    <!-- Blue Navigation Bar -->
+    <nav class="bg-blue-600 text-white">
+      <div class="max-w-7xl mx-auto px-4 md:px-8 py-4">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          <!-- Navigation Links -->
+          <div class="flex flex-wrap gap-6 text-sm md:text-base">
+            <a href="#" class="hover:text-blue-200 transition">Home</a>
+            <a href="#" class="hover:text-blue-200 transition">Real Estate</a>
+            <a href="#" class="hover:text-blue-200 transition">Properties</a>
+            <a href="#" class="hover:text-blue-200 transition">Testimonials</a>
+            <a href="#" class="hover:text-blue-200 transition">Contact</a>
+          </div>
+
+          {% if messages %}
+          <div class="mt-4">
+            {% for message in messages %}
+            <div
+              class="p-3 mb-2 rounded text-white {% if message.tags == 'success' %} bg-green-600 {% elif message.tags == 'warning' %} bg-yellow-500 {% elif message.tags == 'error' %} bg-red-600 {% endif %}">
+              {{ message }}
+            </div>
+            {% endfor %}
+          </div>
+          {% endif %}
+
+          <!-- Subscribe Section -->
+          <div class="flex flex-col md:flex-row md:items-center gap-3">
+            <span class="text-sm md:text-base">Subscribe to</span>
+
+            <form method="POST" action="{% url 'subscribe_newsletter' %}" class="flex gap-3">
+              {% csrf_token %}
+
+              <input type="email" name="email" placeholder="Enter your email" required
+                class="bg-white text-gray-900 px-4 py-2 rounded font-semibold hover:bg-gray-100 transition duration-300" />
+
+              <button type="submit"
+                class="bg-white text-blue-600 px-6 py-2 rounded font-semibold hover:bg-gray-100 transition duration-300 whitespace-nowrap">
+                Subscribe
+              </button>
+            </form>
+          </div>
+
+          <!-- Social Media Icons -->
+          <div class="flex gap-4 justify-start md:justify-end">
+            <a href="#" class="hover:opacity-80 transition" aria-label="Facebook">
+              <img src="{% static 'icons/frame.svg' %}" alt="Facebook" class="w-6 h-6" />
+            </a>
+            <a href="#" class="hover:opacity-80 transition" aria-label="Twitter">
+              <img src="{% static 'icons/Group-1.svg' %}" alt="Twitter" class="w-6 h-6" />
+            </a>
+            <a href="#" class="hover:opacity-80 transition" aria-label="Instagram">
+              <img src="{% static 'icons/Group.svg' %}" alt="Instagram" class="w-6 h-6" />
+            </a>
+            <a href="#" class="hover:opacity-80 transition" aria-label="LinkedIn">
+              <img src="{% static 'icons/Linkedin.svg' %}" alt="LinkedIn" class="w-6 h-6" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Copyright Footer -->
+    <div class="bg-gray-900 text-gray-400 text-sm py-4">
+      <div class="max-w-7xl mx-auto px-4 md:px-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <p>&copy; 2025 All rights reserved LLC</p>
+        <div class="flex gap-4">
+          <a href="#" class="hover:text-white transition">Privacy</a>
+          <a href="#" class="hover:text-white transition">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>
